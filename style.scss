@@ -1,0 +1,256 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+nav{
+    width: 100%;
+    height: 100px;
+    background-color: rgb(237, 134, 151);
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    #search{
+        width: 12rem;
+        height: 2rem;
+        background-color: pink;
+        padding-left: 20px;
+        border: none;
+        border-radius: 7px;
+    }
+    button{
+        width: 3rem;
+        height: 2rem;
+        background-color: pink;
+        border: none;
+        border-radius: 7px;
+    }
+    img{
+        height: 100px;
+    }
+    ul{
+        list-style: none;
+        display: flex;
+        align-items: center;
+       li>a{
+        margin: 0 10px;
+        color: white;
+        text-decoration: none;
+       }
+       a:hover{
+            cursor: pointer;
+            text-decoration: underline;
+            color: pink;
+       }
+    }
+    .icons>i{
+        margin: 0 10px;
+    }
+    .burger{
+        display: none;
+    }
+}
+@media all and (max-width: 720px) {
+    nav{
+        .search{
+            button{
+                display: none;
+            }
+        }
+        ul{
+            display: none;
+        }
+        .burger{
+            display: block;
+            transform: scale(1.8);
+        }
+        .burger:hover{
+            cursor: pointer;
+            #show{
+                display: flex;
+                flex-direction: column;
+                background-color: pink;
+                position: absolute;
+                li{
+                    border-radius: 1opx;
+                    a{
+                        text-decoration: none;
+                        font-size: small;
+                    }
+                }
+            }
+        }
+        .icons>i{
+            margin: 0;
+        }
+    }
+}
+
+@mixin bton($background-color){
+    width: 10rem;
+    height: 2rem;
+    background-color: $background-color;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    transition: background-color 1s ease-in-out, width 1s ease-in-out, transform 1s ease-in-out;
+}
+
+@mixin trans($bgc, $width){
+    background-color: $bgc;
+    cursor: pointer;
+    width: $width;
+    transform: rotate(45deg);
+}
+
+.transition{
+    margin-top: 140px;
+    #a1, #a2, #a3{
+       @include bton(pink);
+    }
+    #a1:hover{
+        @include trans(blue, 12rem);
+    }
+    #a2:hover{
+        @include trans(green, 10rem);
+    }
+    #a3:hover{
+        @include trans(red, 15rem);
+    }
+}
+
+.main-body{
+    width: 100%;
+    height: 500px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .box{
+        width: 70px;
+        height: 70px;
+        position: fixed;
+    }
+    .box1{
+        animation: box1 3s ease-in-out infinite;
+        background-color: teal;
+    }
+    .box2{
+        animation: box2 3s ease-in-out infinite;
+        background-color: yellowgreen;
+    }
+    .box3{
+        animation: box3 3s ease-in-out infinite;
+        background-color: gray;
+    }
+    .box4{
+        animation: box4 3s ease-in-out infinite;
+        background-color: pink;
+    }
+
+    @keyframes box1 box2 box3 box4 {
+        0%, 100%{
+            transform: translate(0);
+        }
+    }
+    @keyframes box1 {
+        20%{
+            transform: translate(200px, -200px);
+        }
+    }
+    @keyframes box2 {
+        35%{
+            transform: translate(-200px, -200px);
+        }
+    }
+    @keyframes box3 {
+        50%{
+            transform: translate(-200px, 200px);
+        }
+    }
+    @keyframes box4 {
+        65%{
+            transform: translate(200px, 200px);
+        }
+    }
+}
+.ball{
+    width: 100%;
+    height: 500px;
+    #round{
+        width: 70px;
+        height: 70px;
+        border-radius: 50%;
+        border: none;
+        background-color: rgb(227, 138, 153);
+        animation: round 3s ease-in-out infinite;
+    }
+    @keyframes round {
+        0%{
+            transform: translate(0);
+        }
+        30%{
+            transform: translateY(200px);
+        }
+        50%{
+            transform: translate(50px, 100px);
+        }
+        70%{
+            transform: translate(80px, 200px);
+        }
+        90%{
+            transform: translate(100px, 150px);
+        }
+        100%{
+            transform: translate(120px, 200px);
+        }
+    }
+}
+
+.forloop{
+    width: 100%;
+    height: 150px;
+    background-color: teal;
+    display:flex;
+    align-items: end;
+    gap: 10px;
+    .item{
+        width: 40px;
+        border: 1px solid;
+    }
+    .item1{
+        height: 100px;
+    }
+    .item2{
+        height: 80px;
+    }
+    .item3{
+        height: 50px;
+    }
+    .item4{
+        height: 90px;
+    }
+    .item5{
+        height: 100px;
+    }
+    .item6{
+        height: 50px;
+    }
+    .item7{
+        height: 80px;
+    }
+
+    @for $i from 1 through 7{
+        @if $i%2==1{
+            .item#{$i}{
+                background-color: green;
+            }
+        }
+        @else {
+            .item#{$i}{
+                background-color: blue;
+            }
+        }
+    }
+}
+
